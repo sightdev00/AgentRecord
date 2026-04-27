@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Local Mermaid.js for diagrams (more robust than CDN) -->
+  <script src="../../scripts/mermaid.min.js"></script>
+  <!-- Standard System Fonts (Avoid network hangs) -->
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --text-color: #1f2937;
+      --bg-color: #ffffff;
+      --border-color: #e5e7eb;
+      --code-bg: #f3f4f6;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      color: var(--text-color);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      background: var(--bg-color);
+    }
+
+    /* Headlines */
+    h1, h2, h3, h4 {
+      color: #111827;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.25rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.75rem; }
+    h2 { font-size: 1.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+    h3 { font-size: 1.4rem; }
+
+    /* TOC Styling */
+    .toc {
+      background: #f8fafc;
+      padding: 1.5rem 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-color);
+      margin: 2rem 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .toc h2 {
+      margin-top: 0;
+      border-bottom: none;
+      font-size: 1.25rem;
+      color: #475569;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .toc li { margin: 0.4rem 0; }
+    .toc-level-1 { font-weight: 700; border-top: 1px solid #f1f5f9; padding-top: 0.5rem; }
+    .toc-level-2 { margin-left: 1.2rem; font-size: 0.95rem; }
+    .toc-level-3 { margin-left: 2.4rem; font-size: 0.9rem; color: #64748b; }
+
+    .toc a {
+      text-decoration: none;
+      color: var(--primary-color);
+      transition: color 0.2s;
+    }
+
+    .toc a:hover { color: #1e40af; text-decoration: underline; }
+
+    /* Content Styling */
+    p { margin-bottom: 1.25rem; }
+    
+    pre {
+      background: var(--code-bg);
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid #e2e8f0;
+    }
+
+    code {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.9em;
+      background: #f1f5f9;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--primary-color);
+      padding-left: 1.5rem;
+      margin-left: 0;
+      font-style: italic;
+      color: #4b5563;
+      background: #eff6ff;
+      padding: 1rem 1.5rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      display: block;
+      margin: 2rem auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th { background: #f9fafb; font-weight: 600; }
+
+    /* Mermaid Optimization */
+    .mermaid {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-color);
+      margin: 1.5rem 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { padding: 0.5in; }
+      h1, h2 { page-break-before: always; }
+      h1:first-child, h1.no-break { page-break-before: auto; }
+      .toc { page-break-after: always; }
+      pre, blockquote { page-break-inside: avoid; }
+      tr { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toc"><h2>目录</h2><ul><li class="toc-level-1"><a href="#kimi-code-cli-使用指南-团队版">Kimi Code CLI 使用指南（团队版）</a></li><li class="toc-level-2"><a href="#一-kimi-code-cli-是什么">一、Kimi Code CLI 是什么</a></li><li class="toc-level-2"><a href="#二-环境要求">二、环境要求</a></li><li class="toc-level-2"><a href="#三-安装步骤">三、安装步骤</a></li><li class="toc-level-3"><a href="#3-1-一键安装-推荐">3.1 一键安装（推荐）</a></li><li class="toc-level-3"><a href="#3-2-如果你已经有-uv">3.2 如果你已经有 uv</a></li><li class="toc-level-3"><a href="#3-3-验证安装">3.3 验证安装</a></li><li class="toc-level-3"><a href="#3-4-安装后命令找不到">3.4 安装后命令找不到？</a></li><li class="toc-level-2"><a href="#四-首次登录与配置">四、首次登录与配置</a></li><li class="toc-level-3"><a href="#4-1-启动">4.1 启动</a></li><li class="toc-level-4"><a href="#4-2-api平台">4.2 API平台</a></li><li class="toc-level-3"><a href="#4-3-登录">4.3 登录</a></li><li class="toc-level-3"><a href="#4-4-远程服务器-无图形界面环境">4.4 远程服务器 / 无图形界面环境</a></li><li class="toc-level-2"><a href="#五-快速上手三步走">五、快速上手三步走</a></li><li class="toc-level-3"><a href="#第一步-问一个问题">第一步：问一个问题</a></li><li class="toc-level-3"><a href="#第二步-做一次代码修改">第二步：做一次代码修改</a></li><li class="toc-level-3"><a href="#第三步-执行一条命令">第三步：执行一条命令</a></li><li class="toc-level-3"><a href="#初始化项目描述文件">初始化项目描述文件</a></li><li class="toc-level-2"><a href="#六-常用命令速查">六、常用命令速查</a></li><li class="toc-level-3"><a href="#6-1-启动命令">6.1 启动命令</a></li><li class="toc-level-3"><a href="#6-2-交互中斜杠命令">6.2 交互中斜杠命令</a></li><li class="toc-level-3"><a href="#6-3-快捷键">6.3 快捷键</a></li><li class="toc-level-2"><a href="#七-核心交互技巧">七、核心交互技巧</a></li><li class="toc-level-3"><a href="#7-1-路径补全">7.1 @ 路径补全</a></li><li class="toc-level-3"><a href="#7-2-审批与确认">7.2 审批与确认</a></li><li class="toc-level-3"><a href="#7-3-运行中引导-steer">7.3 运行中引导（Steer）</a></li><li class="toc-level-3"><a href="#7-4-侧问">7.4 侧问</a></li><li class="toc-level-2"><a href="#八-工作模式详解">八、工作模式详解</a></li><li class="toc-level-3"><a href="#8-1-agent-模式-vs-shell-模式">8.1 Agent 模式 vs Shell 模式</a></li><li class="toc-level-3"><a href="#8-2-plan-模式-先规划再动手">8.2 Plan 模式（先规划再动手）</a></li><li class="toc-level-3"><a href="#8-3-thinking-模式-深度思考">8.3 Thinking 模式（深度思考）</a></li><li class="toc-level-3"><a href="#8-4-yolo-模式-自动批准">8.4 YOLO 模式（自动批准）</a></li><li class="toc-level-3"><a href="#8-5-print-模式-脚本-ci-集成">8.5 Print 模式（脚本/CI 集成）</a></li><li class="toc-level-2"><a href="#九-会话管理">九、会话管理</a></li><li class="toc-level-3"><a href="#9-1-继续之前的会话">9.1 继续之前的会话</a></li><li class="toc-level-3"><a href="#9-2-运行中切换会话">9.2 运行中切换会话</a></li><li class="toc-level-3"><a href="#9-3-会话状态自动持久化">9.3 会话状态自动持久化</a></li><li class="toc-level-3"><a href="#9-4-导出-导入">9.4 导出/导入</a></li><li class="toc-level-2"><a href="#十-上下文管理">十、上下文管理</a></li><li class="toc-level-2"><a href="#十一-高级配置">十一、高级配置</a></li><li class="toc-level-3"><a href="#11-1-配置文件位置">11.1 配置文件位置</a></li><li class="toc-level-3"><a href="#11-2-手动配置其他-llm-平台">11.2 手动配置其他 LLM 平台</a></li><li class="toc-level-3"><a href="#11-3-搜索和抓取服务">11.3 搜索和抓取服务</a></li><li class="toc-level-2"><a href="#十二-升级与卸载">十二、升级与卸载</a></li><li class="toc-level-2"><a href="#十三-常见问题-faq">十三、常见问题 FAQ</a></li></ul></div>
+  <div id="content"><h1 id="kimi-code-cli-使用指南-团队版">Kimi Code CLI 使用指南（团队版）</h1>
+<blockquote>
+<p>本文档基于 Kimi Code 官方文档整理，供组内成员快速上手使用。</p>
+<p>官方文档地址：<a href="https://www.kimi.com/code/docs/kimi-code-cli/getting-started.html">https://www.kimi.com/code/docs/kimi-code-cli/getting-started.html</a></p>
+</blockquote>
+<hr>
+<h2 id="一-kimi-code-cli-是什么">一、Kimi Code CLI 是什么</h2>
+<p>Kimi Code CLI 是一个运行在终端中的 AI Agent 编程助手（类似 Claude Code），能够帮你完成以下工作：</p>
+<ul>
+<li><strong>编写和修改代码</strong>：实现新功能、修复 bug、重构代码</li>
+<li><strong>理解项目</strong>：探索陌生代码库，解答架构和实现问题</li>
+<li><strong>自动化任务</strong>：批量处理文件、执行构建和测试、运行脚本</li>
+<li><strong>搜索和抓取网页</strong>：联网搜索资料（仅 Kimi Code 平台支持）</li>
+</ul>
+<p>它有三种使用方式：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>命令</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交互式命令行</td>
+<td><code>kimi</code></td>
+<td>日常开发，在终端中与 AI 对话</td>
+</tr>
+<tr>
+<td>浏览器界面</td>
+<td><code>kimi web</code></td>
+<td>偏好图形界面，支持会话管理、代码高亮</td>
+</tr>
+<tr>
+<td>Agent 集成</td>
+<td><code>kimi acp</code></td>
+<td>集成到 IDE 或其他 Agent 客户端</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二-环境要求">二、环境要求</h2>
+<ul>
+<li><strong>操作系统</strong>：macOS / Linux / Windows（通过 PowerShell）</li>
+<li><strong>账号</strong>：需要 Kimi 会员订阅，或可调用的 API Key</li>
+<li><strong>Python</strong>：安装脚本会自动安装 uv（Python 包管理工具），支持 Python 3.12~3.14，推荐 3.13</li>
+</ul>
+<hr>
+<h2 id="三-安装步骤">三、安装步骤</h2>
+<h3 id="3-1-一键安装-推荐">3.1 一键安装（推荐）</h3>
+<p>安装脚本会自动安装 uv + Kimi Code CLI：</p>
+<pre><code class="language-bash"># Linux / macOS
+curl -LsSf https://code.kimi.com/install.sh | bash
+
+# Windows (PowerShell)
+Invoke-RestMethod https://code.kimi.com/install.ps1 | Invoke-Expression</code></pre><h3 id="3-2-如果你已经有-uv">3.2 如果你已经有 uv</h3>
+<pre><code class="language-bash">uv tool install --python 3.13 kimi-cli</code></pre><h3 id="3-3-验证安装">3.3 验证安装</h3>
+<pre><code class="language-bash">kimi --version</code></pre><h3 id="3-4-安装后命令找不到">3.4 安装后命令找不到？</h3>
+<p>安装脚本会将 <code>kimi</code> 添加到 PATH，但需要<strong>重启终端</strong>或执行以下命令才能生效：</p>
+<pre><code class="language-bash">source ~/.bashrc    # bash 用户
+source ~/.zshrc     # zsh 用户</code></pre><p>如果仍然找不到，检查 <code>~/.local/bin</code> 是否在你的 PATH 中。</p>
+<hr>
+<h2 id="四-首次登录与配置">四、首次登录与配置</h2>
+<h3 id="4-1-启动">4.1 启动</h3>
+<p>在你的项目目录中启动：</p>
+<pre><code class="language-bash">cd your-project #cd到目标项目目录
+kimi</code></pre><h4 id="4-2-api平台">4.2 API平台</h4>
+<pre><code class="language-bash">https://platform.kimi.com/console/account</code></pre><h3 id="4-3-登录">4.3 登录</h3>
+<p>首次启动后，输入 <code>/login</code> 配置 API 来源：</p>
+<pre><code class="language-">/login</code></pre><p>会出现平台选择界面，推荐选择 <strong>API</strong>，接着提示输入API KEY。输入4.2中生成的API KEY即可。</p>
+<h3 id="4-4-远程服务器-无图形界面环境">4.4 远程服务器 / 无图形界面环境</h3>
+<p>如果浏览器没有弹出，<code>/login</code> 会显示一个 URL，手动复制到浏览器打开即可完成授权。</p>
+<hr>
+<h2 id="五-快速上手三步走">五、快速上手三步走</h2>
+<h3 id="第一步-问一个问题">第一步：问一个问题</h3>
+<p>用自然语言提问，快速了解项目：</p>
+<pre><code class="language-">这个项目的整体架构是怎样的？入口文件在哪里？</code></pre><p>Kimi Code CLI 会自动搜索和阅读相关文件，然后给出回答。</p>
+<h3 id="第二步-做一次代码修改">第二步：做一次代码修改</h3>
+<pre><code class="language-">给 README 添加一个"快速开始"部分，包含安装和运行步骤</code></pre><p>修改文件前会展示 diff 并请求确认——你可以批准、拒绝，或输入反馈让它调整。<strong>不会未经允许改动代码。</strong></p>
+<h3 id="第三步-执行一条命令">第三步：执行一条命令</h3>
+<pre><code class="language-">运行测试，如果有失败的用例就修复它们</code></pre><p>至此你已体验三个核心能力：<strong>提问理解</strong> → <strong>修改代码</strong> → <strong>执行命令</strong>。</p>
+<h3 id="初始化项目描述文件">初始化项目描述文件</h3>
+<p>如果项目中没有 <code>AGENTS.md</code> 文件，建议运行：</p>
+<pre><code class="language-">/init</code></pre><p>让 Kimi Code CLI 分析项目并生成该文件，帮助 AI 更好地理解项目结构和规范。</p>
+<hr>
+<h2 id="六-常用命令速查">六、常用命令速查</h2>
+<h3 id="6-1-启动命令">6.1 启动命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>kimi</code></td>
+<td>启动交互式对话</td>
+</tr>
+<tr>
+<td><code>kimi web</code></td>
+<td>打开浏览器图形界面</td>
+</tr>
+<tr>
+<td><code>kimi --continue</code></td>
+<td>继续当前目录下最近的会话</td>
+</tr>
+<tr>
+<td><code>kimi --session</code></td>
+<td>交互式选择历史会话</td>
+</tr>
+<tr>
+<td><code>kimi -r &lt;session-id&gt;</code></td>
+<td>恢复指定会话</td>
+</tr>
+<tr>
+<td><code>kimi --plan</code></td>
+<td>以 Plan（规划）模式启动</td>
+</tr>
+<tr>
+<td><code>kimi --thinking</code></td>
+<td>启用 Thinking（深度思考）模式</td>
+</tr>
+<tr>
+<td><code>kimi --yolo</code></td>
+<td>启用 YOLO 模式（自动批准所有操作）</td>
+</tr>
+<tr>
+<td><code>kimi --print -p &quot;指令&quot;</code></td>
+<td>非交互模式，执行完自动退出</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-交互中斜杠命令">6.2 交互中斜杠命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/login</code></td>
+<td>配置或切换 API 来源</td>
+</tr>
+<tr>
+<td><code>/usage</code></td>
+<td>查看剩余额度和配额</td>
+</tr>
+<tr>
+<td><code>/model</code></td>
+<td>切换模型和 Thinking 模式</td>
+</tr>
+<tr>
+<td><code>/help</code></td>
+<td>查看所有命令和快捷键</td>
+</tr>
+<tr>
+<td><code>/init</code></td>
+<td>分析项目并生成 AGENTS.md</td>
+</tr>
+<tr>
+<td><code>/new</code></td>
+<td>创建并切换到新会话</td>
+</tr>
+<tr>
+<td><code>/sessions</code></td>
+<td>查看/切换历史会话</td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>压缩上下文（保留关键信息，减少 token）</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>清空当前会话上下文</td>
+</tr>
+<tr>
+<td><code>/export</code></td>
+<td>导出会话为 Markdown 文件</td>
+</tr>
+<tr>
+<td><code>/import</code></td>
+<td>从文件或其他会话导入上下文</td>
+</tr>
+<tr>
+<td><code>/plan</code></td>
+<td>切换 Plan 模式开关</td>
+</tr>
+<tr>
+<td><code>/yolo</code></td>
+<td>切换 YOLO 模式开关</td>
+</tr>
+<tr>
+<td><code>/btw &lt;问题&gt;</code></td>
+<td>侧问（不打断主对话流程）</td>
+</tr>
+<tr>
+<td><code>/task</code></td>
+<td>查看后台任务状态</td>
+</tr>
+<tr>
+<td><code>/title &lt;文字&gt;</code></td>
+<td>为当前会话设置标题</td>
+</tr>
+</tbody></table>
+<h3 id="6-3-快捷键">6.3 快捷键</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Enter</code></td>
+<td>发送消息</td>
+</tr>
+<tr>
+<td><code>Ctrl-J</code> / <code>Alt-Enter</code></td>
+<td>换行（不发送）</td>
+</tr>
+<tr>
+<td><code>Ctrl-V</code></td>
+<td>粘贴文本/图片/视频</td>
+</tr>
+<tr>
+<td><code>Ctrl-X</code></td>
+<td>在 Agent 模式和 Shell 模式之间切换</td>
+</tr>
+<tr>
+<td><code>Ctrl-E</code></td>
+<td>展开查看完整内容（diff/方案）</td>
+</tr>
+<tr>
+<td><code>Ctrl-O</code></td>
+<td>打开外部编辑器编辑输入</td>
+</tr>
+<tr>
+<td><code>Ctrl-C</code></td>
+<td>中断当前操作</td>
+</tr>
+<tr>
+<td><code>Ctrl-D</code></td>
+<td>退出</td>
+</tr>
+<tr>
+<td><code>Ctrl-S</code></td>
+<td>立即注入引导消息到当前轮次</td>
+</tr>
+<tr>
+<td><code>Shift-Tab</code></td>
+<td>切换 Plan 模式</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="七-核心交互技巧">七、核心交互技巧</h2>
+<h3 id="7-1-路径补全">7.1 @ 路径补全</h3>
+<p>在消息中输入 <code>@</code> 可以引用项目中的文件，会自动补全：</p>
+<pre><code class="language-">帮我看一下 @src/components/Button.tsx 这个文件有没有问题</code></pre><p>在 Git 仓库中优先使用 <code>git ls-files</code> 查询，在大型仓库中也能快速定位。</p>
+<h3 id="7-2-审批与确认">7.2 审批与确认</h3>
+<p>AI 执行修改文件、运行命令等操作前会请求确认，你可以：</p>
+<ul>
+<li><strong>允许</strong>：执行这次操作</li>
+<li><strong>本会话允许</strong>：当前会话中自动批准同类操作</li>
+<li><strong>拒绝</strong>：不执行</li>
+<li><strong>附带反馈拒绝</strong>：拒绝并输入文字反馈，指导 AI 调整</li>
+</ul>
+<h3 id="7-3-运行中引导-steer">7.3 运行中引导（Steer）</h3>
+<p>AI 执行任务时，你可以直接输入消息调整方向：</p>
+<ul>
+<li><code>Enter</code>：排队，当前轮次完成后发送</li>
+<li><code>Ctrl-S</code>：立即注入当前轮次</li>
+<li><code>Ctrl-C</code>：中断</li>
+</ul>
+<h3 id="7-4-侧问">7.4 侧问</h3>
+<p>AI 工作期间想问个快速问题但不打断主流程：</p>
+<pre><code class="language-">/btw 这个函数的返回类型是什么？</code></pre><p>响应显示在模态面板中，<code>Escape</code> 关闭。</p>
+<hr>
+<h2 id="八-工作模式详解">八、工作模式详解</h2>
+<h3 id="8-1-agent-模式-vs-shell-模式">8.1 Agent 模式 vs Shell 模式</h3>
+<ul>
+<li><strong>Agent 模式</strong>（默认）：输入发送给 AI 处理</li>
+<li><strong>Shell 模式</strong>：直接执行 Shell 命令</li>
+</ul>
+<p>按 <code>Ctrl-X</code> 切换。当前模式显示在底部状态栏。</p>
+<h3 id="8-2-plan-模式-先规划再动手">8.2 Plan 模式（先规划再动手）</h3>
+<p>适合复杂任务，让 AI 先制定方案再执行：</p>
+<pre><code class="language-">/plan on     # 开启
+/plan off    # 关闭
+/plan view   # 查看当前方案</code></pre><p>Plan 模式下 AI 只能读代码、不能改代码，方案完成后提交审批，你确认后才开始执行。</p>
+<h3 id="8-3-thinking-模式-深度思考">8.3 Thinking 模式（深度思考）</h3>
+<p>让 AI 回答前进行更深入的推理：</p>
+<pre><code class="language-bash">kimi --thinking          # 启动时开启</code></pre><p>或通过 <code>/model</code> 命令切换模型时选择是否开启。</p>
+<h3 id="8-4-yolo-模式-自动批准">8.4 YOLO 模式（自动批准）</h3>
+<p>跳过所有确认提示，适合在可控环境中使用：</p>
+<pre><code class="language-bash">kimi --yolo              # 启动时开启
+/yolo                    # 运行中切换</code></pre><p><strong>注意：YOLO 模式会自动批准所有操作，请确保在安全环境中使用。</strong></p>
+<h3 id="8-5-print-模式-脚本-ci-集成">8.5 Print 模式（脚本/CI 集成）</h3>
+<p>非交互模式，适合自动化场景：</p>
+<pre><code class="language-bash"># 基本用法
+kimi --print -p "列出当前目录的所有 Python 文件"
+
+# 只输出最终结果
+kimi --quiet -p "根据当前变更给我一个 Git commit message"
+
+# 批量处理
+for file in src/*.py; do
+  kimi --print -p "为 $file 添加类型注解"
+done</code></pre><p>退出码：<code>0</code> 成功，<code>1</code> 不可重试失败，<code>75</code> 可重试失败。</p>
+<hr>
+<h2 id="九-会话管理">九、会话管理</h2>
+<h3 id="9-1-继续之前的会话">9.1 继续之前的会话</h3>
+<pre><code class="language-bash">kimi --continue          # 继续最近的会话
+kimi --session           # 交互式选择会话
+kimi -r <session-id>     # 恢复指定会话</code></pre><h3 id="9-2-运行中切换会话">9.2 运行中切换会话</h3>
+<pre><code class="language-">/sessions                # 查看并切换（Ctrl-A 切换显示范围）
+/new                     # 创建新会话</code></pre><h3 id="9-3-会话状态自动持久化">9.3 会话状态自动持久化</h3>
+<p>恢复会话时以下状态会自动还原：审批决策、Plan 模式状态、子 Agent 实例、额外工作目录。</p>
+<h3 id="9-4-导出-导入">9.4 导出/导入</h3>
+<pre><code class="language-">/export                  # 导出为 Markdown
+/export ~/exports/my-session.md
+/import ./previous.md    # 从文件导入
+/import abc12345         # 从会话 ID 导入</code></pre><hr>
+<h2 id="十-上下文管理">十、上下文管理</h2>
+<p>底部状态栏会显示上下文使用率，如 <code>context: 42.0% (4.2k/10.0k)</code>。</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/compact</code></td>
+<td>压缩上下文（AI 总结后替换原内容）</td>
+</tr>
+<tr>
+<td><code>/compact 保留数据库相关的讨论</code></td>
+<td>带指引的压缩</td>
+</tr>
+<tr>
+<td><code>/clear</code></td>
+<td>清空所有上下文</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十一-高级配置">十一、高级配置</h2>
+<h3 id="11-1-配置文件位置">11.1 配置文件位置</h3>
+<p>配置自动保存在 <code>~/.kimi/config.toml</code>。</p>
+<h3 id="11-2-手动配置其他-llm-平台">11.2 手动配置其他 LLM 平台</h3>
+<p>Kimi CLI 支持多种 LLM 平台，可在配置文件中手动添加：</p>
+<p><strong>Kimi API：</strong></p>
+<pre><code class="language-toml">[providers.kimi-for-coding]
+type = "kimi"
+base_url = "https://api.kimi.com/coding/v1"
+api_key = "sk-xxx"</code></pre><p><strong>OpenAI：</strong></p>
+<pre><code class="language-toml">[providers.openai]
+type = "openai_legacy"
+base_url = "https://api.openai.com/v1"
+api_key = "sk-xxx"</code></pre><p><strong>Anthropic Claude：</strong></p>
+<pre><code class="language-toml">[providers.anthropic]
+type = "anthropic"
+base_url = "https://api.anthropic.com"
+api_key = "sk-ant-xxx"</code></pre><p><strong>Google Gemini：</strong></p>
+<pre><code class="language-toml">[providers.gemini]
+type = "gemini"
+base_url = "https://generativelanguage.googleapis.com"
+api_key = "xxx"</code></pre><p>支持的供应商类型：<code>kimi</code>、<code>openai_legacy</code>、<code>openai_responses</code>、<code>anthropic</code>、<code>gemini</code>、<code>vertexai</code>。</p>
+<h3 id="11-3-搜索和抓取服务">11.3 搜索和抓取服务</h3>
+<p><code>SearchWeb</code> 和 <code>FetchURL</code> 工具目前<strong>仅 Kimi Code 平台支持</strong>。使用其他平台时，<code>FetchURL</code> 会回退到本地抓取，<code>SearchWeb</code> 不可用。</p>
+<hr>
+<h2 id="十二-升级与卸载">十二、升级与卸载</h2>
+<pre><code class="language-bash"># 升级
+uv tool upgrade kimi-cli --no-cache
+
+# 卸载
+uv tool uninstall kimi-cli</code></pre><hr>
+<h2 id="十三-常见问题-faq">十三、常见问题 FAQ</h2>
+<p><strong>Q：填了 API Key 提示鉴权失败？</strong><br>A：确认 Key 和 Base URL 属于同一个平台。<code>api.kimi.com</code> 和 <code>api.moonshot.cn</code> 的 Key 互不通用。</p>
+<p><strong>Q：<code>/login</code> 后浏览器没弹出？</strong><br>A：远程服务器环境下会显示一个 URL，手动复制到浏览器打开即可。</p>
+<p><strong>Q：如何查看剩余额度？</strong><br>A：在交互界面中输入 <code>/usage</code>。</p>
+<p><strong>Q：上下文太长怎么办？</strong><br>A：使用 <code>/compact</code> 压缩，或 <code>/new</code> 开启新会话。</p>
+<p><strong>Q：如何反馈问题？</strong><br>A：GitHub Issues：<a href="https://github.com/MoonshotAI/kimi-cli/issues">https://github.com/MoonshotAI/kimi-cli/issues</a></p>
+<hr>
+<blockquote>
+<p>最后更新：2026-04-25</p>
+<p>完整官方文档：<a href="https://www.kimi.com/code/docs/">https://www.kimi.com/code/docs/</a></p>
+</blockquote>
+</div>
+  <script>
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'neutral',
+      securityLevel: 'loose'
+    });
+  </script>
+</body>
+</html>
