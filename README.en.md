@@ -1,26 +1,40 @@
 # AgentRecord
 
-> A record of how agents frame problems, update beliefs, commit to actions, fail, and learn.
+> Long-term analyses of foundational agent problems, durable mechanisms, and revisions in understanding.
 
 [中文主页](./README.md)
 
-Agent tools change quickly. This repository therefore treats tools, prompts and frameworks as evidence or implementation details—not as the primary knowledge asset.
+Agent tools, frameworks, and products change quickly. This repository does not track them as durable assets. It keeps only analyses that form an independent judgment and remain useful across particular tools.
 
-Its durable assets are:
+## Scope
 
-- `foundations/`: theory and conceptual boundaries;
-- `cases/`: real problem-solving records;
-- `patterns/`: mechanisms replicated across cases;
-- `decisions/`: bounded and reversible practice decisions;
-- `experiments/`: falsification, comparison and regression;
-- `inbox/`: unverified observations waiting to be processed.
+AgentRecord studies agents themselves: problem representation, premature search convergence, belief revision, commitment under uncertainty, independent verification, memory control, and human overreliance.
 
-The knowledge flow is:
+It does **not** collect:
+
+- agent tools, popular repositories, or news;
+- setup guides, prompts, or skills;
+- domain engineering cases, code, experiments, or implementation plans;
+- summaries that do not form an independent judgment.
+
+External papers, projects, and cases may appear only as evidence pointers inside an analysis. Their original artifacts remain in the repository where the work was performed.
+
+## Structure
 
 ```text
-Problem → Case → Pattern → Decision → Experiment → Revision
+AgentRecord/
+├── README.md
+├── README.en.md
+├── AGENTS.md
+├── LICENSE
+├── analyses/
+└── _meta/
+    ├── writing-guide.md
+    └── analysis-template.md
 ```
 
-Every formal asset separates observation, inference, hypothesis and decision; identifies disconfirming evidence; records its validity boundary; and remains revisable.
+## Current analysis
 
-Start with [the foundational analysis](./foundations/agent_problem_solving_harness_analysis.md) and [the knowledge model](./_meta/knowledge-model.md).
+- [Problem-solving control for agents: representation, belief, commitment, and verification](./analyses/agent-problem-solving-control.md)
+
+Every new analysis must distinguish evidence from inference, examine competing explanations, state its validity boundary, identify unresolved questions, and produce a concrete implication for everyday agent use.
