@@ -1,201 +1,114 @@
-下面这版可以直接放到你的 `README.md` 里。
-[中文](./README.zh-CN.md)
-````markdown
 # AgentRecord
 
-> A public record of prompts, agent workflows, coding experiments, harness ideas, and high-signal reviews.
+> 记录 Agent 如何理解问题、形成判断、采取行动，以及哪里判断错了。
 
-AgentRecord是一个长期更新的个人实践仓库，目标是把分散的Agent相关信息沉淀为：
+[English summary](./README.en.md)
 
-- 可复用的 **playbooks**
-- 可验证的 **builds**
-- 有判断力的 **reviews**
-- 可持续追踪的 **journal**
+Agent 迭代很快，工具名、框架和 Prompt 很容易过时。真正值得长期保留的是：
 
-它既是我的Agent学习档案，也是我的公开实验室。
+- 当时如何表征问题；
+- 看到了哪些异常和约束；
+- 保留过哪些竞争解释；
+- 哪个实验真正改变了判断；
+- 为什么允许进入实施；
+- 结果由什么证据验收；
+- 这条经验在什么条件下失效。
 
----
+因此，这里不再把 Prompt、Skill、Agent 框架或热门仓库本身当作核心资产。它们可以是证据、实验材料或实现手段，但不能代替思考过程。
 
-## What’s inside
+## 仓库如何形成知识
 
-### `playbooks/`
-可直接复用的资产。
+```text
+具体问题
+  → Case：保存事实、表征、假设、区分实验和结果
+  → Pattern：从多个案例中抽取稳定机制
+  → Decision：说明在什么边界内采用该模式
+  → Experiment：持续证伪和回归
+  → Revision：新证据到来后修订或废止
+```
 
-包括：
+理论资料从 `foundations/` 进入这条链路，但理论权威不等于工程结论。外部文章、论文和仓库只通过引用进入 Case、Pattern 或 Experiment，不再按载体单独收藏。
 
-- prompts
-- workflows
-- skills
-- templates
-
-适合快速借鉴、复制、修改、落地。
-
----
-
-### `builds/`
-真实做过的实验与项目。
-
-包括：
-
-- agents
-- automations
-- benchmarks
-- harness
-
-这里关注的不只是“想法”，而是可运行、可验证、可复盘的实现。
-
----
-
-### `reviews/`
-对外部高价值内容的结构化拆解。
-
-包括：
-
-- repos
-- blogs
-- posts
-- papers
-
-目标不是收藏链接，而是提炼：
-它是什么、为什么重要、能借鉴什么、边界在哪里。
-
----
-
-### `journal/`
-持续更新记录。
-
-包括：
-
-- weekly
-- monthly
-- changelog
-
-用于记录近期探索、实验进展、认知变化与阶段性成果。
-
----
-
-## Repository structure
+## 目录
 
 ```text
 AgentRecord/
-├── builds/
-│   ├── agents/
-│   ├── automations/
-│   ├── benchmarks/
-│   └── harness/
-├── journal/
-│   ├── CHANGELOG.md
-│   ├── monthly/
-│   └── weekly/
+├── foundations/       # 基础理论、概念边界、可争论命题
+├── cases/             # 真实问题的完整求解记录
+├── patterns/          # 跨案例复现的机制与失败模式
+├── decisions/         # 有范围、有依据、可撤销的实践决策
+├── experiments/       # 对照、证伪、评测和回归
+├── inbox/             # 尚未形成判断的临时线索
 ├── _meta/
-│   ├── contribution.md
-│   ├── scripts/
-│   ├── taxonomy.md
+│   ├── knowledge-model.md
+│   ├── writing-standard.md
 │   └── templates/
-├── playbooks/
-│   ├── prompts/
-│   ├── skills/
-│   ├── templates/
-│   └── workflows/
-├── reviews/
-│   ├── blogs/
-│   ├── papers/
-│   ├── posts/
-│   └── repos/
-└── README.md
-````
+└── archive/legacy-v0/ # 旧版按工具和内容类型组织的材料
+```
 
----
+## 从这里开始
 
-## Start here
+1. 先读 [Agent 问题求解的基础分析](./foundations/agent_problem_solving_harness_analysis.md)。
+2. 再读 [知识模型](./_meta/knowledge-model.md)，理解不同资产之间如何转化。
+3. 日常遇到真实问题时，从 [Case 模板](./_meta/templates/case.md) 开始，不从总结或工具清单开始。
+4. 只有跨案例复现的机制，才能进入 `patterns/`；只有经过验收且说明边界的做法，才能进入 `decisions/`。
 
-建议按下面顺序浏览：
+## 准入规则
 
-1. **Playbooks**
-   看可直接使用的 prompts、workflows、skills 与 templates。
+以下内容不能直接进入主目录：
 
-2. **Builds**
-   看真实实验、自动化项目、benchmark 与 harness。
+- “最近有哪些 Agent 工具”的列表；
+- 没有原始证据的二手结论；
+- 只有最终答案、没有判断过程的复盘；
+- 由同一个 Agent 自述“已经验证”的成功案例；
+- 没有适用边界、反例或失效条件的通用原则；
+- 为了显得系统而拼接的术语和清单。
 
-3. **Reviews**
-   看对热门仓库、博客、帖子、论文的高密度总结。
+一份正式资产至少要回答：
 
-4. **Journal**
-   看最近在做什么、学到了什么、下一步准备做什么。
+1. 它解决的是哪个问题族？
+2. 事实、推断、假设和决策是否分开？
+3. 什么证据能推翻当前判断？
+4. 哪一步真正改变了判断？
+5. 结果由什么独立证据验收？
+6. 哪些条件变化后不能再复用？
 
----
+## 状态而不是“完成”
 
-## What this repo is for
+每份资产使用以下状态之一：
 
-这个仓库主要服务四件事：
+| 状态 | 含义 |
+|---|---|
+| `draft` | 已成文，但关键证据或反例仍缺失 |
+| `tested` | 已有一次真实测试或案例支持 |
+| `replicated` | 在不同案例或环境中再次成立 |
+| `bounded` | 适用范围与主要失效条件已经明确 |
+| `superseded` | 被新证据或新结论替代，原文保留 |
 
-### 1. Turn scattered information into reusable assets
+状态表示证据成熟度，不表示文字是否写得漂亮。
 
-把零散的 Prompt、经验、文章、案例，整理成以后还能继续用的内容。
+## 当前主线
 
-### 2. Keep a public build log
+- Agent 为什么会搜索过早收敛；
+- 问题表征如何限制后续搜索和行动；
+- 如何维持竞争假设并选择区分性实验；
+- 如何阻止证据不足的过早承诺；
+- 如何把真实问题转化为可迁移、可修订的经验；
+- 如何让执行权、验收权和记忆写入相互制约。
 
-公开记录 Agent 相关实验、工作流、自动化与 benchmark 过程。
+## 当前资产
 
-### 3. Build stronger judgment
+| 类型 | 内容 | 状态 |
+|---|---|---|
+| Foundation | [Agent 的基础问题：从语言生成器到受控问题求解系统](./foundations/agent_problem_solving_harness_analysis.md) | `draft` |
+| Decision | [0001：按知识形成过程组织仓库](./decisions/0001-organize-by-knowledge-formation.md) | `tested` |
 
-不仅记录“看到了什么”，更记录“为什么值得看、能借鉴什么、不该误判什么”。
+目前没有把旧材料强行包装成 Case 或 Pattern。后续应从真实开发问题中逐个补齐证据链；空目录比虚构的“完整知识体系”更诚实。
 
-### 4. Create durable career leverage
+## 历史内容
 
-沉淀可展示的工程能力、学习能力、结构化表达能力与持续迭代能力。
-
----
-
-## Update rhythm
-
-这个仓库会持续更新，重点包括：
-
-* new playbooks
-* new builds
-* selected reviews
-* weekly / monthly journal entries
-
-更新不追求堆数量，更关注可复用性、可验证性和长期价值。
-
----
-
-## Principles
-
-AgentRecord 的基本原则：
-
-* **Prefer reusable content over raw collection**
-* **Prefer tested builds over vague ideas**
-* **Prefer structured reviews over bookmarks**
-* **Prefer continuous iteration over one-time polish**
-
----
-
-## For recruiters / collaborators
-
-这个仓库反映了我在以下方向上的实践与思考：
-
-* prompt design
-* agent workflows
-* coding automation
-* harness / benchmark thinking
-* practical AI tooling
-* long-term knowledge compounding
-
----
-
-## Contribution
-
-如果你对某个 playbook、build 或 review 有建议，欢迎交流与讨论。
-相关规范见：
-
-* `_meta/contribution.md`
-* `_meta/taxonomy.md`
-
----
+旧版内容保存在 [`archive/legacy-v0/`](./archive/legacy-v0/README.md)。保留它们是为了避免“重构等于删除历史”，但这些材料只有经过重新取证和改写后，才能进入新的知识主线。
 
 ## License
 
-This project is licensed under the terms of the `LICENSE` file.
-
-```
+This project is licensed under the terms of the [LICENSE](./LICENSE).
