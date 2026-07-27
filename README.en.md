@@ -48,14 +48,14 @@ The root README is the only analysis index; directory layers do not receive addi
 
 - [Problem-solving control for agents: representation, belief, commitment, and verification](./analyses/agent-problem-solving-control.md)
 - [Human review of agent outputs: understanding, control, and decisions](./analyses/human-review-of-agent-outputs.md)
-- [Responsibility boundaries for agent control: from single sampling to sustained execution](./analyses/from-agent-loops-to-explicit-control-graphs.md)
+- [Responsibility boundaries for agent control: from single sampling to sustained execution](./analyses/agent-runtime-control-boundaries.md)
 
 ## How the analyses relate
 
 | Analysis | Owns the question | Does not define |
 |---|---|---|
 | [Problem-solving control](./analyses/agent-problem-solving-control.md) | How judgment moves from problem representation to belief, commitment, and verification | A concrete runtime topology; the full human-review responsibility boundary |
-| [Runtime control boundaries](./analyses/from-agent-loops-to-explicit-control-graphs.md) | How instruction content, current views, model-external responsibility, continued execution, and optional topology combine to enforce control | Whether judgments, evidence, or acceptance content are correct; a complexity or maturity ladder |
+| [Runtime control boundaries](./analyses/agent-runtime-control-boundaries.md) | How instruction content, current views, model-external responsibility, continued execution, and optional topology combine to enforce control | Whether judgments, evidence, or acceptance content are correct; a complexity or maturity ladder |
 | [Human review](./analyses/human-review-of-agent-outputs.md) | How a responsible person understands, controls, and decides within a stated scope | Automated authorization policy; a guarantee that human judgment is correct |
 
 The first analysis asks which distinctions must be maintained across judgment, commitment, and verification; the second asks where and when the system enforces them; the third asks who understands and decides at consequential commitment boundaries. New evidence should revise the analysis that owns its question; update another analysis only when its boundary or interface changes.

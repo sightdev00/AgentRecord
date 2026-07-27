@@ -55,14 +55,14 @@ AgentRecord/
 
 - [Agent 问题求解的基础控制：问题表征、信念更新、承诺与验收](./analyses/agent-problem-solving-control.md)
 - [Agent 产物的人类审查：理解、控制与决策](./analyses/human-review-of-agent-outputs.md)
-- [Agent 运行控制的责任边界：从单次采样到持续执行](./analyses/from-agent-loops-to-explicit-control-graphs.md)
+- [Agent 运行控制的责任边界：从单次采样到持续执行](./analyses/agent-runtime-control-boundaries.md)
 
 ## 分析关系
 
 | 分析 | 负责回答 | 不在这里定义 |
 |---|---|---|
 | [问题求解控制](./analyses/agent-problem-solving-control.md) | 判断怎样从问题表征进入信念、承诺与验收 | 具体运行时拓扑；人类审查的完整责任边界 |
-| [运行控制边界](./analyses/from-agent-loops-to-explicit-control-graphs.md) | 指令内容、本轮视图、模型外责任、持续推进与可选拓扑怎样组合并执行控制 | 判断、证据或验收内容是否正确；复杂度或成熟度等级 |
+| [运行控制边界](./analyses/agent-runtime-control-boundaries.md) | 指令内容、本轮视图、模型外责任、持续推进与可选拓扑怎样组合并执行控制 | 判断、证据或验收内容是否正确；复杂度或成熟度等级 |
 | [人类审查](./analyses/human-review-of-agent-outputs.md) | 责任人怎样理解、控制并对限定范围作出决定 | 自动授权策略；人类判断必然正确 |
 
 总论回答“需要区分什么判断与承诺”，运行控制分析回答“控制在系统的什么位置、何时执行”，人类审查回答“谁在关键承诺处理解并决定”。新证据先进入负责该问题的分析；只有改变其他分析的边界或接口时，才同步修订。
