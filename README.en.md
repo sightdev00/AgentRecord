@@ -36,5 +36,6 @@ AgentRecord/
 ## Current analysis
 
 - [Problem-solving control for agents: representation, belief, commitment, and verification](./analyses/agent-problem-solving-control.md)
+- [From agent loops to explicit control graphs: when execution structure should be externalized](./analyses/from-agent-loops-to-explicit-control-graphs.md)
 
 Every new analysis must distinguish evidence from inference, examine competing explanations, state its validity boundary, identify unresolved questions, and produce a concrete implication for everyday agent use.
