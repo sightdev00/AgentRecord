@@ -46,6 +46,7 @@ AgentRecord/
 ## 当前分析
 
 - [Agent 问题求解的基础控制：问题表征、信念更新、承诺与验收](./analyses/agent-problem-solving-control.md)
+- [从 Agent Loop 到显式控制图：执行结构何时值得被外置](./analyses/from-agent-loops-to-explicit-control-graphs.md)
 
 ## 准入标准
 
