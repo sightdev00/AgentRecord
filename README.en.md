@@ -6,9 +6,11 @@
 
 ## Long-term objective
 
-> Continuously improve practical experience in using agents without becoming dependent on fashionable tool frameworks that will eventually be replaced.
+> Improve practical experience in using agents based on the cases I describe, without becoming dependent on fashionable tool frameworks that will eventually be replaced.
 
 This section is the authoritative statement of the repository's current long-term direction. Revise it directly when that direction changes; transient Codex task status, execution plans, and progress do not belong in the repository.
+
+A described case is an entry point for locating a problem, counterexample, or evidence gap; the description itself is not automatically a fact or general principle. Only traceable case artifacts and their effect on an existing judgment, boundary, or action enter the analysis that owns the question.
 
 Agent tools, frameworks, and products change quickly. This repository does not track them as durable assets. It keeps only analyses that form an independent judgment and remain useful across particular tools.
 
