@@ -28,6 +28,17 @@ It does **not** collect:
 
 External papers, projects, and cases may appear only as evidence pointers inside an analysis. Their original artifacts remain in the repository where the work was performed.
 
+## Companion engineering repository
+
+[AgentWorkbench](https://github.com/sightdev00/AgentWorkbench) is the engineering companion to this project. It stores my own engineering experience, external agent engineering cases, reproductions, experiments, and executable implementations. The repositories form one system without maintaining duplicate authority:
+
+- AgentRecord owns foundational cross-tool problems, mechanisms, evidence strength, and responsibility boundaries;
+- AgentWorkbench owns implementation facts, adaptation work, test results, and failure records;
+- engineering observations flow back only when they change a judgment, evidence strength, validity boundary, or practical action here;
+- AgentRecord cites fixed commits, versions, or experiment artifacts instead of copying engineering process and implementation.
+
+AgentWorkbench is currently a private incubation repository. Until it becomes public, private artifacts cannot be the sole evidence for a public AgentRecord conclusion; this repository records only the responsibility link, evidence role, and sources that can be disclosed without exposing sensitive material.
+
 ## Structure
 
 ```text
