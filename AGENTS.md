@@ -20,5 +20,6 @@ When adding or revising content:
 14. Revise an existing article when new evidence changes the same question; do not create parallel documents merely to preserve old wording.
 15. When touching an analysis or changing the ownership map, recheck that it still owns an independent stable question and still has evidence for its current judgment. If not, prepare an exact consolidation and removal list; after any required structural confirmation, merge surviving content into the proper owner, repair links and the index, and remove the obsolete article. Git history preserves superseded text, so do not keep duplicate authorities merely as archives.
 16. Prefer one clear thematic commit over file-by-file commits.
+17. Write reader-facing technical documents in concrete, natural language. Lead with decisions and actions, remove method commentary that does not change the reader's work, and use `_meta/writing-guide.md` for the detailed review standard; do not optimize prose for AI-detector scores.
 
 Before changing repository structure, list the proposed changes and wait for user confirmation.
