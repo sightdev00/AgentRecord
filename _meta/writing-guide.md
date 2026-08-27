@@ -124,6 +124,40 @@
 
 具体实现的新版本只有在改变责任边界、失效模式、证据有效性或当前选择时才值得复核。不要建立定期趋势扫描、产品观察名单或“未来方向”收藏。
 
+## 技术文档要写得具体、自然
+
+技术文档首先帮助读者做事。先写决定、对象、动作、约束和验收方法；只有会改变读者理解或行动时，才解释文档分类、证据方法和维护原则。
+
+写作时遵守以下要求：
+
+- 用具体主体和动词说明谁做什么。能写“DMS 通过 `algo-base` 调用推理后端”，就不要写“建立清晰的依赖关系”；
+- 直接说明结论及其依据，删去“当前判断”“需要强调的是”“从工程角度看”等不增加信息的开场；
+- 简单关系用一两句话说清。标题、表格和清单只用于导航、比较或执行，不为显得完整而机械分节；
+- 不连续使用对称句式、三段式排比和“不是……而是……”来包装普通事实；
+- 技术术语在它最准确时保留，并在首次出现时说明含义。不要用抽象名词替代具体文件、模块、接口和动作；
+- 同一要求只写一次，需要复用时链接到原处。把“避免重复维护”写成具体做法，不用“唯一权威事实”“领域工程制品”等内部治理术语替代；
+- 保留不确定性、来源和适用范围，但把它们放在相关结论旁边，不为每句话附加“事实、推断、证据角色”等标签；
+- 完稿后朗读一遍。若一句话不像工程师会对同事直接说的话，或删掉后不影响决定与执行，就改写或删除。
+
+以下替换说明的是编辑方向，不是固定禁词表：
+
+| 模板化表达 | 更直接的写法 |
+|---|---|
+| “它是领域工程制品目录” | “这里保存 DMS 迁移过程中形成的需求、设计和测试记录。” |
+| “不复制出第二套权威事实” | “同一项要求只在一处维护，其他文档链接到这里。” |
+| “当前判断：目标方向成立” | “现有方案可以继续，但设计前还要补齐以下基线。” |
+| “完成门：关键差异有证据角色” | “进入设计前，每项关键差异都要标明源码位置、影响和确认人。” |
+
+不要通过随机换词、故意制造语病、删除有用结构或追求 AI 检测器分数来“像人写的”。固定词表也不可靠：同一个词在不同上下文中可能必要，也可能空泛。复核标准是读者能否快速找到决定、原因、动作、责任和风险，以及文字是否保留了原有技术含义。
+
+这项要求主要依据以下材料：
+
+- Google Developer Documentation Style Guide 的 [Voice and tone](https://developers.google.com/style/tone) 建议采用自然、直接、简洁的表达，并通过朗读检查语言是否自然；
+- Microsoft Writing Style Guide 的 [Top 10 tips](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice) 和 [Technical terms](https://learn.microsoft.com/en-us/style-guide/word-choice/use-technical-terms-carefully) 建议围绕读者意图写作、减少无用词，并只在技术术语最清楚时使用它；
+- GOV.UK 的 [Clear language](https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/) 要求使用直白、主动的语言；
+- 中文技术文档可参考 MDN 的 [中文写作指南](https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Writing_style_guide)，其中把清晰、简洁和一致作为基本要求；
+- ACL 2024 的 [Threads of Subtlety](https://aclanthology.org/2024.acl-long.298/) 和 EMNLP 2025 的 [A New Framework for Profiling Humans and Large Language Models](https://aclanthology.org/2025.emnlp-main.1163/) 观察到人类文本与模型文本在篇章结构和句法变化上的总体差异。这些是群体层面的统计结果，不能据此认定某个词或某篇文档由 AI 生成，因此这里只把它们用于反对机械模板，不把它们变成检测规则。
+
 ## 修订
 
 新证据改变同一个问题时：
